@@ -28,7 +28,7 @@ public:
 	Vector2D operator*(const Vector2D& v) const { return Vector2D(m_x * v.m_x, m_y * v.m_y); }
 	Vector2D operator/(const Vector2D& v) const { return Vector2D(m_x / v.m_x, m_y / v.m_y); }
 
-	void operator=(const Vector2D& v) const { m_x = v.m_x; m_y = v.m_y; }
+	void operator=(const Vector2D& v) { m_x = v.m_x; m_y = v.m_y; }
 
 	bool operator==(const Vector2D& v) const { return ((m_x == v.m_x) && (m_y == v.m_y)); }
 	bool operator!=(const Vector2D& v) const { return !((m_x == v.m_x) && (m_y == v.m_y)); }
@@ -42,9 +42,9 @@ public:
 
 	G dotProduct(const Vector2D& v) const { return ((m_x * v.m_x) + (m_y * v.m_y)); }
 	G crossProduct(const Vector2D& v) const { return ((m_x * v.m_y) - (m_y * v.m_x)); }
-	G magnitude() const { return sqrt((m_x * m_x) + (m_y * m_y)); }
+	G magnitude() const { return sqrt(m_x * m_x + m_y * m_y); }
 
-	Vector2D normal(const Vector2D& v) const { return Vector2D(m_x / magnitude(), m_y / magnitude()); }
+	Vector2D normal() const { return Vector2D(m_x / magnitude(), m_y / magnitude()); }
 	Vector2D perpendicular() const { return Vector2D(m_y, -m_x); }
 };
 
